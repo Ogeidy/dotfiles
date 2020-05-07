@@ -1,0 +1,10 @@
+" Global preferences
+set number
+set colorcolumn=80
+
+" Indention
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set autoindent
