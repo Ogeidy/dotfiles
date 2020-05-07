@@ -1,0 +1,9 @@
+[user]
+	name = Iakov Mamontov
+	email = iakov.mamontov@emlid.com
+[core]
+	editor = vim
+[merge]
+    tool = vimdiff
+[credential]
+	helper = cache --timeout=600
