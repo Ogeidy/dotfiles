@@ -2,8 +2,10 @@
 
 - link:
     ~/.dotfiles: ''
+    ~/.vim: vim/
     ~/.vimrc: vim/vimrc
     ~/.gitconfig: git/gitconfig
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - vim +PluginInstall +qall
