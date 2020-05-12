@@ -117,3 +117,6 @@ if ! shopt -oq posix; then
 fi
 
 alias docker="sudo docker"
+alias docker-compose="sudo docker-compose"
+alias ll="ls -lah"
+alias l="ls -lh"
