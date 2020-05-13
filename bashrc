@@ -65,27 +65,46 @@ alias ll="ls -lah"
 alias l="ls -lh"
 
 # Prompt customization
-time_color='244'
-prompt_color='27;1'
-tmux_prompt_color='76;1'
-root_prompt_color='196;1'
+colors=("14;1"   # cyan
+        "28;1"   # dark green
+        "27;1"   # blue
+        "76;1"   # green
+        "92;1"   # lilac
+        "94;1"   # brown
+        "165;1"  # purple
+        "166;1"  # orange
+        "226;1") # yellow
+time_color='244'          # grey
+prompt_color='27;1'       # blue
+tmux_prompt_color='76;1'  # green
+root_prompt_color='196;1' # red
+tmux_random_color=yes
+#prompt_random_color=yes
 
-if [[ $UID == 0 ]] ; then
-    prompt_color=$root_prompt_color
+if [ "$tmux_random_color" = yes ]; then
+    tmux_prompt_color=${colors[$(($RANDOM % ${#colors[@]}))]}
+fi
+
+if [ "$prompt_random_color" = yes ]; then
+    prompt_color=${colors[$(($RANDOM % ${#colors[@]}))]}
 fi
 
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
     screen) color_prompt=yes; prompt_color=$tmux_prompt_color;;
-
+    linux) color_prompt=yes; prompt_color='76;1';;
 esac
+
+if [[ $UID == 0 ]] ; then
+    prompt_color=$root_prompt_color
+fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='\[\e[38;5;'$time_color'm\]\t j\j \[\e[38;5;'$prompt_color'm\]\u@\h\[\e[0m\]:\[\e[01;34m\]\w\n\[\e[38;5;'$prompt_color'm\]\$\[\e[0m\] '
 else
     PS1='\t j\j \u@\h:\w\n\$ '
 fi
-unset color_prompt time_color prompt_color tmux_prompt_color root_prompt_color
+unset colors time_color prompt_color tmux_prompt_color root_prompt_color tmux_tandom_color color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in

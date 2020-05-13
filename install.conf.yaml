@@ -3,6 +3,7 @@
 - link:
     ~/.dotfiles: ''
     ~/.bashrc: bashrc
+    /root/.bashrc: bashrc
     ~/.vim: vim/
     ~/.vimrc: vim/vimrc
     ~/.tmux: tmux/
