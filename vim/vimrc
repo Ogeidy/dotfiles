@@ -20,6 +20,7 @@ set shiftwidth=4
 set expandtab
 set smarttab
 set autoindent
+set pastetoggle=<F3>
 
 " Mappings
 nmap <F2> :NERDTree<cr>
