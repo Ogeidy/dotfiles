@@ -18,8 +18,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=11000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -75,7 +75,7 @@ colors=("14;1"   # cyan
         "166;1"  # orange
         "226;1") # yellow
 time_color='244'          # grey
-prompt_color='27;1'       # blue
+prompt_color='76;1'       # green
 tmux_prompt_color='76;1'  # green
 root_prompt_color='196;1' # red
 tmux_random_color=yes
