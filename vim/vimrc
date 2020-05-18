@@ -13,6 +13,8 @@ filetype plugin indent on
 " Global preferences
 set number
 set colorcolumn=80
+highlight ColorColumn ctermbg=8
+highlight ColorColumn guibg=DarkGray
 
 " Indention
 set tabstop=4
