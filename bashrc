@@ -59,8 +59,8 @@ fi
 ##### CUSTOM PART #####
 
 # Aliases
-alias docker="sudo docker"
-alias docker-compose="sudo docker-compose"
+# alias docker="sudo docker"
+# alias docker-compose="sudo docker-compose"
 alias ll="ls -lah"
 alias l="ls -lh"
 
@@ -112,3 +112,4 @@ case "$TERM" in
     *) ;;
 esac
 
+export PIPENV_VENV_IN_PROJECT=1
