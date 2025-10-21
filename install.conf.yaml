@@ -19,10 +19,9 @@
     ~/.tmux.conf: tmux/tmux.conf
     ~/.gitconfig: git/gitconfig
 
-
 - shell:
     - command: git submodule update --init --recursive
-      description: "Installing get submodules"
+      description: "Installing git submodules"
       stdout: true
       stderr: true
       quiet: true
@@ -51,13 +50,6 @@
 
     - command: bash setup/install_docker.sh
       description: "Installing Docker"
-      stdout: true
-      stderr: true
-      quiet: true
-
-
-    - command: python3 -m pip install --user --upgrade pip setuptools wheel || true
-      description: "Upgrading pip (if python3 available)"
       stdout: true
       stderr: true
       quiet: true

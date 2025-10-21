@@ -2,15 +2,20 @@
 set -e
 
 FEDORA_PACKAGES=(
-  vim git tmux xclip jq curl htop iotop iftop python3-pip
+  make gcc patch zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel \
+  openssl-devel tk-devel libffi-devel xz-devel libuuid-devel gdbm-libs libnsl2 \
+  lm_sensors
 )
 
 UBUNTU_PACKAGES=(
-  vim git tmux xclip jq curl htop iotop iftop python3-pip
+  make build-essential libssl-dev zlib1g-dev \
+  libbz2-dev libreadline-dev libsqlite3-dev curl git \
+  libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
+  lm-sensors
 )
 
 EXTRA_PACKAGES=(
-  fzf ripgrep cloc tree zip unzip
+  vim git tmux xclip jq curl htop iotop iftop python3-pip fzf ripgrep cloc tree zip unzip
 )
 
 # Detect distro via /etc/os-release
