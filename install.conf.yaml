@@ -1,15 +1,69 @@
-- clean: ['~']
+- defaults:
+    link:
+      relink: true # если файл уже существует — заменить симлинком
+      create: true # создать родительские директории, если нужно
+
+- clean: ["~"]
+
+- create:
+    - ~/Projects
+    - ~/Sandbox
+    - ~/Media
 
 - link:
-    ~/.dotfiles: ''
-    ~/.bashrc: bashrc
-    /root/.bashrc: bashrc
+    ~/.bashrc: shell/.bashrc
+    ~/.bash_aliases: shell/.bash_aliases
     ~/.vim: vim/
     ~/.vimrc: vim/vimrc
     ~/.tmux: tmux/
     ~/.tmux.conf: tmux/tmux.conf
     ~/.gitconfig: git/gitconfig
 
+
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
-  - vim +PluginInstall +qall
+    - command: git submodule update --init --recursive
+      description: "Installing get submodules"
+      stdout: true
+      stderr: true
+      quiet: true
+
+    - command: vim +PluginInstall +qall
+      description: "Installing vim plugins"
+      stdout: true
+
+    - command: bash setup/install_platform.sh
+      description: "Installing platform packages"
+      stdout: true
+      stderr: true
+      quiet: true
+
+    - command: bash setup/install_pyenv.sh
+      description: "Installing pyenv"
+      stdout: true
+      stderr: true
+      quiet: true
+
+    - command: bash setup/install_nvm.sh
+      description: Installing nvm and Node.js (LTS)"
+      stdout: true
+      stderr: true
+      quiet: true
+
+    - command: bash setup/install_docker.sh
+      description: "Installing Docker"
+      stdout: true
+      stderr: true
+      quiet: true
+
+
+    - command: python3 -m pip install --user --upgrade pip setuptools wheel || true
+      description: "Upgrading pip (if python3 available)"
+      stdout: true
+      stderr: true
+      quiet: true
+
+    - command: echo "Dotfiles successfully installed! Reload your shell or run 'source ~/.bashrc'"
+      description: "Done"
+      stdout: true
+      stderr: true
+      quiet: true

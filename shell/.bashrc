@@ -1,8 +1,5 @@
-##### STANDART UBUNTU PART #####
-
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# ~/.bashrc (managed by dotfiles)
+# Basic interactive bashrc
 
 # If not running interactively, don't do anything
 case $- in
@@ -55,20 +52,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Source bash aliases file if present
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 ##### CUSTOM PART #####
-
-# Aliases
-# alias docker="sudo docker"
-# alias docker-compose="sudo docker-compose"
-alias ll="ls -lah"
-alias l="ls -lh"
-
-alias my_bat="echo 'Battery:' && upower -i $(upower -e | grep 'BAT') | grep -E 'state|energy:|energy-rate|voltage|time\ to|percentage'"
-alias my_temp="sensors coretemp-isa-0000 thinkpad-isa-0000 BAT0-acpi-0 pch_cannonlake-virtual-0 nvme-pci-3d00 acpitz-acpi-0 iwlwifi_1-virtual-0 | grep -vE 'thinkpad-isa-0000|coretemp-isa-0000|temp3|temp4|temp6|temp7|temp8|^$'"
-alias my_stat="my_temp && my_bat"
-alias my_stat_w="watch -n 2 \"sensors coretemp-isa-0000 thinkpad-isa-0000 BAT0-acpi-0 pch_cannonlake-virtual-0 nvme-pci-3d00 acpitz-acpi-0 iwlwifi_1-virtual-0 | grep -vE 'thinkpad-isa-0000|coretemp-isa-0000|temp3|temp4|temp6|temp7|temp8|^$' && echo 'Battery:' && upower -i $(upower -e | grep 'BAT') | grep -E 'state|energy:|energy-rate|voltage|time\ to|percentage'\""
-alias dfh="df -h | grep -v '/dev/loop' | grep -v 'tmpfs'"
 
 # Prompt customization
 colors=("14;1"   # cyan
@@ -118,4 +105,14 @@ case "$TERM" in
     *) ;;
 esac
 
+
+# Set up shell environment for Pyenv
 export PIPENV_VENV_IN_PROJECT=1
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
+# Set up shell environment for nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
